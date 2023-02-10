@@ -3,16 +3,14 @@ use std::process::exit;
 use regex::Regex;
 
 fn worka(caps: &regex::Captures) {
-    let mut string = String::new();
     let x = caps.get(1).map_or("", |m| m.as_str());
     let mut a = x.parse::<usize>().unwrap();
     if a > 30 {
         a = 30;
     }
     for _ in 0..a {
-        string.push_str("<table-cell/>");
+        print!("<table-cell/>");
     }
-    print!("{}", string);
 }
 
 
@@ -42,9 +40,7 @@ fn main() {
                 Some(caps) => worka(&caps),
                 _ => match trep_b.captures(&line) {
                     Some(caps) => {
-                        let mut string = String::new();
                         let mut content = String::new();
-                        let mut fina = String::new();
                         let x = caps.get(1).map_or("", |m| m.as_str());
                         let mut b = x.parse::<usize>().unwrap();
                         if b > 50 {
@@ -74,9 +70,7 @@ fn main() {
                 Some(caps) => worka(&caps),
                 _ => match tspan_b.captures(&line) {
                     Some(caps) => {
-                        let mut string = String::new();
                         let mut content = String::new();
-                        let mut fina = String::new();
                         let x = caps.get(1).map_or("", |m| m.as_str());
                         let mut b = x.parse::<usize>().unwrap();
                         if b > 50 {
