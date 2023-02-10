@@ -63,9 +63,8 @@ fn main() {
                         }
                         let content = cont.replace(&content, "");
                         for _ in 0..b {
-                            fina = format!("{}<table-cell>{}</table-cell>", fina, content);
+                            print!("<table-cell>{}</table-cell>", content);
                         }
-                        print!("{}", fina);
                     }
                     _ => {println!("caps failed"); exit(1);},
                 },
@@ -96,9 +95,8 @@ fn main() {
                         }
                         let content = cont.replace(&content, "");
                         for _ in 0..b {
-                            fina = format!("{}<table-cell>{}</table-cell>", fina, content);
+                            print!("<table-cell>{}</table-cell>", content);
                         }
-                        print!("{}", fina);
                     }
                     _ => {println!("caps failed"); exit(1);},
                 },
