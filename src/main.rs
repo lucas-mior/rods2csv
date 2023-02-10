@@ -104,9 +104,7 @@ fn main() {
                 },
             };
         } else if ! any_table.is_match(&line) {
-            println!("not any table: {}", line);
             if table_row.is_match(&line) {
-                println!("table-row: {}", line);
                 row += 1;
             }
             println!("{}", line);
