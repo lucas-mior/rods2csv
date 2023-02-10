@@ -12,12 +12,12 @@ fn worka(caps: &regex::Captures) {
     for _ in 0..a {
         string.push_str("<table-cell/>");
     }
-    println!("{}", string);
+    print!("{}", string);
 }
 
 
 fn main() {
-    println!("============== rods2csv ==============");
+    // println!("============== rods2csv ==============");
     let mut row: u32 = 0;
 
     let table_rep = Regex::new("table-cell.*number-columns-repeated").unwrap();
@@ -65,7 +65,7 @@ fn main() {
                         for _ in 0..b {
                             fina = format!("{}<table-cell>{}</table-cell>", fina, content);
                         }
-                        println!("{}", fina);
+                        print!("{}", fina);
                     }
                     _ => {println!("caps failed"); exit(1);},
                 },
@@ -98,7 +98,7 @@ fn main() {
                         for _ in 0..b {
                             fina = format!("{}<table-cell>{}</table-cell>", fina, content);
                         }
-                        println!("{}", fina);
+                        print!("{}", fina);
                     }
                     _ => {println!("caps failed"); exit(1);},
                 },
@@ -107,7 +107,7 @@ fn main() {
             if table_row.is_match(&line) {
                 row += 1;
             }
-            println!("{}", line);
+            print!("{}", line);
             if row > 100 {
                 exit(0);
             }
