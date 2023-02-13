@@ -1,6 +1,7 @@
 use std::io;
 use std::process::exit;
 use regex::Regex;
+use substring::Substring;
 
 fn worka(caps: &regex::Captures) {
     let x = caps.get(1).map_or("", |m| m.as_str());
@@ -46,18 +47,20 @@ fn main() {
                         if b > 50 {
                             b = 50;
                         }
+                        let mut line = line;
                         while ! table_cell.is_match(&line) {
-                            if let Some(line) = lines.next() {
-                                let line = match line {
-                                    Ok(line) => line,
+                            if let Some(l) = lines.next() {
+                                let l2 = match l {
+                                    Ok(l3) => l3,
                                     Err(_) => break,
                                 };
+                                line = l2;
                                 content.push_str(&line);
                             } else {
                                 break;
                             }
                         }
-                        let content = cont.replace(&content, "");
+                        let content = cont.replace_all(&content, "");
                         for _ in 0..b {
                             print!("<table-cell>{}</table-cell>", content);
                         }
@@ -87,9 +90,20 @@ fn main() {
                                 break;
                             }
                         }
-                        let content = cont.replace(&content, "");
-                        for _ in 0..b {
-                            print!("<table-cell>{}</table-cell>", content);
+                        let content = cont.replace_all(&content, "");
+
+                        let len0 = content.chars().count();
+                        let len_each = len0 / b + 1;
+                        let mut parte = vec![];
+                        let mut j = 0;
+                        while j < b-1 {
+                            parte.push(content.substring(j*len_each + 1, j*len_each + 1 + len_each));
+                            j += 1;
+                        } j += 1;
+                        parte.push(content.substring(j*len_each + 1, len0-1));
+
+                        for p in parte.iter() {
+                            print!("<table-cell>{}</table-cell>", p);
                         }
                     }
                     _ => {println!("caps failed"); exit(1);},
