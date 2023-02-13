@@ -16,7 +16,6 @@ fn worka(caps: &regex::Captures) {
 
 
 fn main() {
-    // println!("============== rods2csv ==============");
     let mut row: u32 = 0;
 
     let table_rep = Regex::new("table-cell.*number-columns-repeated").unwrap();
