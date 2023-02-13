@@ -46,15 +46,15 @@ fn main() {
                         if b > 50 {
                             b = 50;
                         }
-                        let mut line = line;
-                        while ! table_cell.is_match(&line) {
-                            if let Some(l) = lines.next() {
-                                let l2 = match l {
+                        let mut l0 = line;
+                        while ! table_cell.is_match(&l0) {
+                            if let Some(l1) = lines.next() {
+                                let l2 = match l1 {
                                     Ok(l3) => l3,
                                     Err(_) => break,
                                 };
-                                line = l2;
-                                content.push_str(&line);
+                                l0 = l2;
+                                content.push_str(&l0);
                             } else {
                                 break;
                             }
@@ -78,13 +78,15 @@ fn main() {
                         if b > 50 {
                             b = 50;
                         }
-                        while ! table_cell.is_match(&line) {
-                            if let Some(line) = lines.next() {
-                                let line = match line {
-                                    Ok(line) => line,
+                        let mut l0 = line;
+                        while ! table_cell.is_match(&l0) {
+                            if let Some(l1) = lines.next() {
+                                let l2 = match l1 {
+                                    Ok(l3) => l3,
                                     Err(_) => break,
                                 };
-                                content.push_str(&line);
+                                l0 = l2;
+                                content.push_str(&l0);
                             } else {
                                 break;
                             }
